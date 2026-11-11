@@ -1,0 +1,107 @@
+[
+  {
+    "id": "iceberg-discovery",
+    "episode": "1-1",
+    "location": "southern-water-tribe",
+    "summary": "Katara and Sokka crack open a glowing iceberg and find a cheerful airbender and his sky bison who have been frozen inside it for a hundred years.",
+    "source": "https://avatar.fandom.com/wiki/The_Boy_in_the_Iceberg"
+  },
+  {
+    "id": "return-to-the-temple",
+    "episode": "1-3",
+    "location": "southern-air-temple",
+    "summary": "Aang comes back to his old home and learns that his people are gone, and his grief sets off the Avatar State for the first time on screen.",
+    "source": "https://avatar.fandom.com/wiki/The_Southern_Air_Temple"
+  },
+  {
+    "id": "kyoshi-warriors",
+    "episode": "1-4",
+    "location": "kyoshi-island",
+    "summary": "The island's warriors capture the travelers, Sokka learns to respect Suki's fighting style, and Zuko's raid forces Aang to leave so the village is spared.",
+    "source": "https://avatar.fandom.com/wiki/The_Warriors_of_Kyoshi"
+  },
+  {
+    "id": "bumis-tests",
+    "episode": "1-5",
+    "location": "omashu",
+    "summary": "The king of Omashu sets Aang a series of strange trials, then reveals that he is Bumi, Aang's childhood friend.",
+    "source": "https://avatar.fandom.com/wiki/The_King_of_Omashu"
+  },
+  {
+    "id": "siege-of-the-north",
+    "episode": "1-20",
+    "location": "northern-water-tribe",
+    "summary": "Yue gives her life to restore the Moon Spirit, and Aang, joined with the Ocean Spirit, drives Admiral Zhao's fleet away from the city.",
+    "source": "https://avatar.fandom.com/wiki/The_Siege_of_the_North,_Part_2"
+  },
+  {
+    "id": "occupied-omashu",
+    "episode": "2-3",
+    "location": "omashu",
+    "summary": "The group sneaks into Omashu after the Fire Nation takes it and helps its resistance, while Azula arrives to deal with the captive King Bumi.",
+    "source": "https://avatar.fandom.com/wiki/Return_to_Omashu"
+  },
+  {
+    "id": "city-of-silence",
+    "episode": "2-14",
+    "location": "ba-sing-se",
+    "summary": "The team finally reaches Ba Sing Se, only to find that the Dai Li forbid anyone from even mentioning the war.",
+    "source": "https://avatar.fandom.com/wiki/City_of_Walls_and_Secrets"
+  },
+  {
+    "id": "earth-king-learns",
+    "episode": "2-18",
+    "location": "ba-sing-se",
+    "summary": "The team reaches the Earth King and shows him the war his court has hidden from him, and Long Feng is arrested.",
+    "source": "https://avatar.fandom.com/wiki/The_Earth_King"
+  },
+  {
+    "id": "fall-of-ba-sing-se",
+    "episode": "2-20",
+    "location": "ba-sing-se",
+    "summary": "Azula takes control of the city with the Dai Li's help and strikes Aang down in the Avatar State, and Katara uses spirit water to bring him back.",
+    "source": "https://avatar.fandom.com/wiki/The_Crossroads_of_Destiny"
+  },
+  {
+    "id": "zukos-homecoming",
+    "episode": "3-1",
+    "location": "fire-nation-capital",
+    "summary": "Zuko comes home to the Fire Nation as a celebrated prince, but finds that getting back his old life doesn't settle his doubts.",
+    "source": "https://avatar.fandom.com/wiki/The_Awakening"
+  },
+  {
+    "id": "beach-weekend",
+    "episode": "3-5",
+    "location": "ember-island",
+    "summary": "Zuko, Azula, Mai and Ty Lee spend an awkward holiday on Ember Island that ends with each of them admitting something honest by a campfire.",
+    "source": "https://avatar.fandom.com/wiki/The_Beach"
+  },
+  {
+    "id": "black-sun-invasion",
+    "episode": "3-11",
+    "location": "fire-nation-capital",
+    "summary": "The eclipse invasion falls apart because Azula was expecting it, while Zuko finally stands up to his father and leaves to join the Avatar.",
+    "source": "https://avatar.fandom.com/wiki/The_Day_of_Black_Sun,_Part_2:_The_Eclipse"
+  },
+  {
+    "id": "ember-island-play",
+    "episode": "3-17",
+    "location": "ember-island",
+    "summary": "The friends go to see a stage play about their own adventures and are uncomfortable with how the actors portray them.",
+    "source": "https://avatar.fandom.com/wiki/The_Ember_Island_Players"
+  },
+  {
+    "id": "white-lotus-liberation",
+    "episode": "3-20",
+    "location": "ba-sing-se",
+    "summary": "Iroh and the Order of the White Lotus break through the city walls, using the comet's power, to take Ba Sing Se back.",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_3:_Into_the_Inferno"
+  },
+  {
+    "id": "new-fire-lord",
+    "episode": "3-21",
+    "location": "fire-nation-capital",
+    "summary": "With the war over, Zuko is crowned Fire Lord and promises to help the world recover.",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_4:_Avatar_Aang"
+  }
+]

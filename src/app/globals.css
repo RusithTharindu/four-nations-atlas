@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4ecd8;
+  --paper-deep: #e9dcbc;
+  --ink: #2b2620;
+  --ink-soft: #5b5246;
+  --ocean: #8fc3d6;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --font-hand: var(--font-hand);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background: var(--ocean);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
