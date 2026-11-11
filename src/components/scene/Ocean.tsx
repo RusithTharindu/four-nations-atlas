@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { WORLD, buildCoastMask } from "@/lib/world/terrain";
+import { ambient } from "@/lib/world/ambient";
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -33,6 +34,7 @@ const fragmentShader = /* glsl */ `
   uniform vec3 uDeep;
   uniform vec3 uShallow;
   uniform vec3 uFoam;
+  uniform vec3 uTint;
   varying vec3 vWorld;
   varying float vWave;
   #include <fog_pars_fragment>
@@ -68,7 +70,7 @@ const fragmentShader = /* glsl */ `
     // Subtle paper-like speckle.
     col *= 0.97 + 0.03 * noise(vWorld.xz * 2.5);
 
-    gl_FragColor = vec4(col, 1.0);
+    gl_FragColor = vec4(col * uTint, 1.0);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
     #include <fog_fragment>
@@ -101,6 +103,7 @@ export function Ocean({ segments = 160, maskSize = 256, animate = true }: OceanP
       uDeep: { value: new THREE.Color("#3f88a8") },
       uShallow: { value: new THREE.Color("#8fd0d6") },
       uFoam: { value: new THREE.Color("#fbf7ec") },
+      uTint: { value: new THREE.Color(1, 1, 1) },
     }),
     [mask],
   );
@@ -110,7 +113,9 @@ export function Ocean({ segments = 160, maskSize = 256, animate = true }: OceanP
 
   useFrame((_, delta) => {
     const m = materialRef.current;
-    if (m && animate) m.uniforms.uTime.value += delta;
+    if (!m) return;
+    if (animate) m.uniforms.uTime.value += delta;
+    m.uniforms.uTint.value.copy(ambient.tint);
   });
 
   return (

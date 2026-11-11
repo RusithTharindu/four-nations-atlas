@@ -10,13 +10,16 @@ import { AnchorProjector } from "./AnchorProjector";
 import { TravelPath } from "./TravelPath";
 import { PanelViewOffset } from "./PanelViewOffset";
 import { CameraFlyTo } from "./CameraFlyTo";
+import { DayNight } from "./DayNight";
+import { Clouds } from "./Clouds";
+import { NationParticles } from "./Particles";
 import { useAtlas } from "@/store/atlas";
 import { useRef } from "react";
-
-const SKY = "#bfe0ea";
+import { useReducedMotion } from "motion/react";
 
 export default function Scene() {
   const down = useRef<{ x: number; y: number } | null>(null);
+  const reduce = useReducedMotion() ?? false;
   return (
     <Canvas
       onPointerDown={(e) => {
@@ -33,27 +36,14 @@ export default function Scene() {
       gl={{ antialias: true, toneMapping: THREE.NeutralToneMapping }}
       className="!absolute inset-0"
     >
-      <color attach="background" args={[SKY]} />
-      <fog attach="fog" args={[SKY, 220, 520]} />
+      <DayNight animate={!reduce} />
 
-      <hemisphereLight args={["#fff6e5", "#5d8aa0", 0.9]} />
-      <directionalLight
-        position={[-80, 120, 60]}
-        intensity={1.8}
-        color="#fff1d6"
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-left={-130}
-        shadow-camera-right={130}
-        shadow-camera-top={110}
-        shadow-camera-bottom={-110}
-        shadow-camera-far={400}
-        shadow-bias={-0.0004}
-      />
-
-      <Ocean />
+      <Ocean animate={!reduce} />
       <Terrain />
-      <Landmarks />
+      <Landmarks animate={!reduce} />
+      <Clouds animate={!reduce} />
+      {/* Particles are purely decorative motion: skipped entirely for reduced motion. */}
+      {!reduce && <NationParticles />}
       <TravelPath />
       <AnchorProjector />
       <CameraRig />
