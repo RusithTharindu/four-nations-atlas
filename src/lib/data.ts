@@ -1,14 +1,7 @@
 import episodesJson from "@data/episodes.json";
 import locationsJson from "@data/locations.json";
 import eventsJson from "@data/events.json";
-import type {
-  AtlasEvent,
-  AtlasLocation,
-  Book,
-  Episode,
-  EpisodeId,
-  Nation,
-} from "@/types/atlas";
+import type { AtlasEvent, AtlasLocation, Book, Episode, EpisodeId, Nation } from "@/types/atlas";
 
 // The JSON is checked by `npm run validate:data`; here we just give it its types.
 export const episodes = episodesJson as Episode[];
@@ -53,9 +46,7 @@ export function eventsAtLocation(locationId: string): AtlasEvent[] {
 }
 
 export function booksOfLocation(location: AtlasLocation): Book[] {
-  const set = new Set<Book>(
-    location.appearances.map((a) => Number(a.episode.split("-")[0]) as Book),
-  );
+  const set = new Set<Book>(location.appearances.map((a) => Number(a.episode.split("-")[0]) as Book));
   return [...set].sort();
 }
 

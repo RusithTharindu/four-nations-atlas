@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { NATIONS, BOOKS, type Book, type Nation } from "@/types/atlas";
 import { EPISODE_COUNT, getLocation, isLocationVisibleAt } from "@/lib/data";
+import { passesFilters } from "@/lib/filters";
 
 export interface AtlasState {
   /** 0-based index into the broadcast-ordered episode list. */
@@ -29,6 +30,17 @@ function withEpisode(s: AtlasState, episodeIndex: number): Partial<AtlasState> {
   return { episodeIndex, selectedLocationId: keep ? s.selectedLocationId : null };
 }
 
+/** Changing filters also closes a selection that is now filtered out. */
+function withFilters(
+  s: AtlasState,
+  patch: Pick<Partial<AtlasState>, "nations" | "books">,
+): Partial<AtlasState> {
+  const next = { ...s, ...patch };
+  const selected = getLocation(s.selectedLocationId);
+  const keep = selected && passesFilters(selected, next);
+  return { ...patch, selectedLocationId: keep ? s.selectedLocationId : null };
+}
+
 const clampEpisode = (i: number) => Math.min(Math.max(Math.round(i), 0), EPISODE_COUNT - 1);
 
 export const useAtlas = create<AtlasState>()((set) => ({
@@ -45,8 +57,9 @@ export const useAtlas = create<AtlasState>()((set) => ({
   stepEpisode: (delta) => set((s) => withEpisode(s, clampEpisode(s.episodeIndex + delta))),
   selectLocation: (id) => set({ selectedLocationId: id }),
   hoverLocation: (id) => set({ hoveredLocationId: id }),
-  toggleNation: (nation) => set((s) => ({ nations: { ...s.nations, [nation]: !s.nations[nation] } })),
-  toggleBook: (book) => set((s) => ({ books: { ...s.books, [book]: !s.books[book] } })),
+  toggleNation: (nation) =>
+    set((s) => withFilters(s, { nations: { ...s.nations, [nation]: !s.nations[nation] } })),
+  toggleBook: (book) => set((s) => withFilters(s, { books: { ...s.books, [book]: !s.books[book] } })),
   setSearch: (search) => set({ search }),
   setPlaying: (isPlaying) => set({ isPlaying }),
 }));

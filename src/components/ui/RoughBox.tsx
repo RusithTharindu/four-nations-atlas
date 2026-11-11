@@ -16,6 +16,8 @@ interface RoughBoxProps {
   roughness?: number;
   /** Adds the paper-grain texture over the fill. */
   paper?: boolean;
+  /** Classes for the wrapper around the children. */
+  contentClassName?: string;
 }
 
 /** A box whose border (and fill) is drawn by rough.js so it looks hand-sketched. */
@@ -28,6 +30,7 @@ export function RoughBox({
   strokeWidth = 1.6,
   roughness = 1.6,
   paper = true,
+  contentClassName = "",
 }: RoughBoxProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<{ w: number; h: number } | null>(null);
@@ -39,7 +42,9 @@ export function RoughBox({
       // offsetWidth/Height include padding and ignore CSS transforms (e.g. the pop-in scale).
       const width = el.offsetWidth;
       const height = el.offsetHeight;
-      setSize((s) => (s && Math.abs(s.w - width) < 1 && Math.abs(s.h - height) < 1 ? s : { w: width, h: height }));
+      setSize((s) =>
+        s && Math.abs(s.w - width) < 1 && Math.abs(s.h - height) < 1 ? s : { w: width, h: height },
+      );
     });
     ro.observe(el);
     return () => ro.disconnect();
@@ -78,7 +83,7 @@ export function RoughBox({
         ))}
       </svg>
       {paper && <div className="paper-grain pointer-events-none absolute inset-[5px]" aria-hidden />}
-      <div className="relative">{children}</div>
+      <div className={`relative ${contentClassName}`}>{children}</div>
     </div>
   );
 }

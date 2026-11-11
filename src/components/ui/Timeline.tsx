@@ -39,7 +39,14 @@ function PencilLine({ width }: { width: number }) {
   return (
     <svg className="pointer-events-none absolute inset-x-0 top-0 h-6 w-full overflow-visible" aria-hidden>
       {paths.map((p, i) => (
-        <path key={i} d={p.d} fill="none" stroke="var(--ink-soft)" strokeWidth={p.strokeWidth} strokeLinecap="round" />
+        <path
+          key={i}
+          d={p.d}
+          fill="none"
+          stroke="var(--ink-soft)"
+          strokeWidth={p.strokeWidth}
+          strokeLinecap="round"
+        />
       ))}
     </svg>
   );
@@ -116,7 +123,11 @@ export function Timeline() {
         className="group relative mb-5 grid h-11 w-11 shrink-0 place-items-center text-ink"
         aria-label={isPlaying ? "Pause timeline" : "Play timeline"}
       >
-        <svg viewBox="0 0 44 44" className="absolute inset-0 transition-transform group-hover:rotate-6" aria-hidden>
+        <svg
+          viewBox="0 0 44 44"
+          className="absolute inset-0 transition-transform group-hover:rotate-6"
+          aria-hidden
+        >
           <path
             d="M22 3.5 C 33 3, 40.5 11, 40.4 22.3 C 40 33, 32 40.6, 21.5 40.4 C 10.6 40.2, 3.5 32.4, 3.6 21.6 C 3.8 11.2, 11.4 4, 23.5 4.6"
             fill="var(--paper)"
@@ -125,7 +136,16 @@ export function Timeline() {
             strokeLinecap="round"
           />
         </svg>
-        <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <svg
+          viewBox="0 0 24 24"
+          className="relative h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2.2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
           {isPlaying ? (
             <>
               <path d="M8.5 5.5 L 8.2 18.6" />
@@ -174,7 +194,9 @@ export function Timeline() {
             className="absolute top-0 -translate-x-1/2"
             initial={false}
             animate={{ left: `${pct(index)}%` }}
-            transition={dragging || reduce ? { duration: 0 } : { type: "spring", stiffness: 320, damping: 30 }}
+            transition={
+              dragging || reduce ? { duration: 0 } : { type: "spring", stiffness: 320, damping: 30 }
+            }
           >
             {/* Near the ends the label hugs the handle's inner side so it stays on screen. */}
             <div
@@ -219,7 +241,13 @@ export function Timeline() {
                   strokeWidth={2}
                   strokeLinecap="round"
                 />
-                <path d="M8 12.4 C 10 9.8, 13.4 14.4, 16 11.4" fill="none" stroke="var(--ink)" strokeWidth={1.5} strokeLinecap="round" />
+                <path
+                  d="M8 12.4 C 10 9.8, 13.4 14.4, 16 11.4"
+                  fill="none"
+                  stroke="var(--ink)"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                />
               </svg>
             </div>
           </motion.div>

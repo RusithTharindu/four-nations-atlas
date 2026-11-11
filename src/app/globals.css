@@ -45,3 +45,6 @@ body {
   .marker:hover .marker-pin,
   .marker:focus-visible .marker-pin { animation: none; transform: scale(1.08); }
 }
+
+/* Hide the browser's own clear button on the search field; Escape clears it. */
+input[type="search"]::-webkit-search-cancel-button { appearance: none; }

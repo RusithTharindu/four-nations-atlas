@@ -57,7 +57,7 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
 
   return (
     <motion.div
-      className="pointer-events-auto absolute bottom-[74px] left-0 w-[min(300px,80vw)] origin-bottom"
+      className="pointer-events-auto absolute bottom-[74px] left-0 w-[min(270px,80vw)] origin-bottom"
       style={{ x: "-50%" }}
       initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.55, rotate: tilt - 9, y: 18 }}
       animate={{ opacity: 1, scale: 1, rotate: tilt, y: 0 }}
@@ -77,31 +77,28 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
         >
           ×
         </button>
-        <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide" style={{ color: meta.ink }}>
+        <div
+          className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide"
+          style={{ color: meta.ink }}
+        >
           <NationIcon nation={loc.nation} className="h-4 w-4" />
           {meta.label}
         </div>
         <h2 className="mt-0.5 font-hand text-3xl font-bold leading-none text-ink">{loc.name}</h2>
         <Underline color={meta.ink} className="-mt-0.5 mb-2 w-4/5" />
-        <p className="text-sm leading-snug text-ink">{loc.summary}</p>
-        <dl className="mt-3 space-y-1 text-xs text-ink-soft">
-          <div>
-            <dt className="inline font-semibold text-ink">First seen: </dt>
-            <dd className="inline">
-              Book {first.book}, Ep. {first.number} — <span className="italic">{first.title}</span>
-              {firstIsFlashback && " (in a flashback)"}
-            </dd>
-          </div>
-          <div>
-            <dt className="inline font-semibold text-ink">Shown in: </dt>
-            <dd className="inline">
-              {shown} episode{shown === 1 ? "" : "s"} so far
-            </dd>
-          </div>
-        </dl>
+        {/* The quick note: full details live in the side panel. */}
+        <p className="text-xs text-ink-soft">
+          <span className="font-semibold text-ink">First seen: </span>
+          {first.book}×{first.number} <span className="italic">{first.title}</span>
+          {firstIsFlashback && " (flashback)"} · {shown} episode{shown === 1 ? "" : "s"} so far
+        </p>
+        {!latest && <p className="mt-2 text-sm leading-snug text-ink">{loc.summary}</p>}
         {latest && latestEpisode && (
           <p className="mt-2 border-t border-dashed border-ink/30 pt-2 font-hand text-lg leading-tight text-ink">
-            <span style={{ color: meta.ink }}>{latestEpisode.book}×{latestEpisode.number}:</span> {latest.summary}
+            <span style={{ color: meta.ink }}>
+              {latestEpisode.book}×{latestEpisode.number}:
+            </span>{" "}
+            {latest.summary}
           </p>
         )}
       </RoughBox>

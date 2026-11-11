@@ -38,14 +38,8 @@ function AirTemple({ x, z }: { x: number; z: number }) {
 
 /** A gently pulsing glow inside each big Fire Nation crater. */
 function LavaGlow({ animate }: { animate: boolean }) {
-  const craters = useMemo(
-    () => volcanoCraters().map((c) => ({ ...c, y: heightAt(c.x, c.z) + 0.05 })),
-    [],
-  );
-  const material = useMemo(
-    () => new THREE.MeshBasicMaterial({ color: "#ff6a2b", toneMapped: false }),
-    [],
-  );
+  const craters = useMemo(() => volcanoCraters().map((c) => ({ ...c, y: heightAt(c.x, c.z) + 0.05 })), []);
+  const material = useMemo(() => new THREE.MeshBasicMaterial({ color: "#ff6a2b", toneMapped: false }), []);
   useFrame(({ clock }) => {
     if (animate) material.color.setHSL(0.04, 0.95, 0.5 + Math.sin(clock.elapsedTime * 1.3) * 0.06);
   });

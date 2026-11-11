@@ -33,9 +33,29 @@ interface NationIconProps {
   y?: number;
 }
 
-export function NationIcon({ nation, className = "h-5 w-5", color = "currentColor", size, x, y }: NationIconProps) {
+export function NationIcon({
+  nation,
+  className = "h-5 w-5",
+  color = "currentColor",
+  size,
+  x,
+  y,
+}: NationIconProps) {
   return (
-    <svg viewBox="0 0 24 24" className={size ? undefined : className} width={size} height={size} x={x} y={y} fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <svg
+      viewBox="0 0 24 24"
+      className={size ? undefined : className}
+      width={size}
+      height={size}
+      x={x}
+      y={y}
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
       {PATHS[nation].map((d, i) => (
         <path key={i} d={d} />
       ))}

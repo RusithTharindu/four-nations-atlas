@@ -217,7 +217,8 @@ export function terrainColor(x: number, z: number, h: number, sample: TerrainSam
       break;
     case "fire":
       if (beach) col = C.darkSand;
-      else if (sample.relief === "volcano" && sample.inner > 0.72) col = mix(C.fireRock, C.lava, smoothstep(0.72, 0.9, sample.inner));
+      else if (sample.relief === "volcano" && sample.inner > 0.72)
+        col = mix(C.fireRock, C.lava, smoothstep(0.72, 0.9, sample.inner));
       else col = mix(C.fireLow, C.fireRock, smoothstep(1.5, 6, h));
       break;
     case "air":

@@ -59,7 +59,9 @@ function buildTerrain(segX: number): THREE.BufferGeometry {
     const cz = (pz[a] + pz[b] + pz[c]) / 3;
     const cy = (py[a] + py[b] + py[c]) / 3;
     // Colour from the vertex sample most inland, so coast triangles pick up land colours.
-    const sa = samples[a], sb = samples[b], sc = samples[c];
+    const sa = samples[a],
+      sb = samples[b],
+      sc = samples[c];
     const sample = sa.coast >= sb.coast && sa.coast >= sc.coast ? sa : sb.coast >= sc.coast ? sb : sc;
     const col = terrainColor(cx, cz, cy, sample);
     for (const v of [a, b, c]) {

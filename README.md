@@ -30,3 +30,7 @@ The data lives in `/data` as typed JSON. Its schemas are in `src/types/atlas.ts`
 | `NEEDS_REVIEW.md` | Facts left out because they couldn't be confirmed |
 
 Lore rules: canon is the original series only. Nothing is invented. Anything uncertain goes into `NEEDS_REVIEW.md` instead of the data. Every entry carries a `source` URL from the [Avatar Wiki](https://avatar.fandom.com).
+
+## Shareable links
+
+The current episode and selected place are kept in the URL, for example `/?episode=2-15&location=ba-sing-se`. A link to a place that hasn't aired yet at the given episode moves the timeline to its first appearance.

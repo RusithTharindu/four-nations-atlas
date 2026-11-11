@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { isLocationVisibleAt, locations, NATION_META } from "@/lib/data";
+import { locations, NATION_META } from "@/lib/data";
+import { isAired, passesFilters } from "@/lib/filters";
 import { markerPosition } from "@/lib/world/markers";
 import { ANCHOR_STYLE, useAnchor } from "@/lib/anchors";
 import { useAtlas } from "@/store/atlas";
@@ -16,21 +17,22 @@ function Marker({ loc }: { loc: AtlasLocation }) {
   const reduce = useReducedMotion();
   const meta = NATION_META[loc.nation];
   const anchorRef = useAnchor(`marker:${loc.id}`, markerPosition(loc));
-  const aired = useAtlas((s) => isLocationVisibleAt(loc, s.episodeIndex));
+  const aired = useAtlas((s) => isAired(loc, s));
+  const shown = useAtlas((s) => passesFilters(loc, s));
 
   return (
-    <div
-      ref={anchorRef}
-      style={ANCHOR_STYLE}
-      data-layer={hovered || selected ? 600 : 0}
-    >
+    <div ref={anchorRef} style={ANCHOR_STYLE} data-layer={hovered || selected ? 600 : 0}>
       <div className="absolute bottom-0 left-0 -translate-x-1/2">
         <AnimatePresence>
           {aired && (
             <motion.button
               key="pin"
               type="button"
-              className="marker pointer-events-auto relative flex flex-col items-center outline-none"
+              className={`marker relative flex flex-col items-center outline-none ${
+                shown ? "pointer-events-auto" : "pointer-events-none grayscale"
+              }`}
+              tabIndex={shown ? 0 : -1}
+              aria-hidden={!shown}
               aria-label={`${loc.name} (${meta.label})`}
               aria-pressed={selected}
               onClick={() => selectLocation(selected ? null : loc.id)}
@@ -38,10 +40,8 @@ function Marker({ loc }: { loc: AtlasLocation }) {
               onPointerLeave={() => hoverLocation(null)}
               onFocus={() => hoverLocation(loc.id)}
               onBlur={() => hoverLocation(null)}
-              initial={
-                reduce ? { opacity: 0 } : { opacity: 0, y: -14, scale: 0.6 }
-              }
-              animate={{ opacity: 1, y: 0, scale: selected ? 1.15 : 1 }}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: -14, scale: 0.6 }}
+              animate={{ opacity: shown ? 1 : 0.18, y: 0, scale: selected ? 1.15 : shown ? 1 : 0.85 }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.4 }}
               transition={{ type: "spring", stiffness: 380, damping: 18 }}
             >
@@ -77,13 +77,7 @@ function Marker({ loc }: { loc: AtlasLocation }) {
                     strokeDasharray="3 3"
                   />
                 )}
-                <NationIcon
-                  nation={loc.nation}
-                  color={meta.ink}
-                  x={10}
-                  y={9}
-                  size={24}
-                />
+                <NationIcon nation={loc.nation} color={meta.ink} x={10} y={9} size={24} />
               </svg>
               <AnimatePresence>
                 {(hovered || selected) && (

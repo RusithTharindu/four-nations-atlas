@@ -22,9 +22,24 @@ export function Underline({ color = "var(--ink)", className = "" }: { color?: st
 }
 
 /** A curly hand-drawn arrow, pointing right by default. */
-export function DoodleArrow({ className = "", color = "var(--ink)" }: { className?: string; color?: string }) {
+export function DoodleArrow({
+  className = "",
+  color = "var(--ink)",
+}: {
+  className?: string;
+  color?: string;
+}) {
   return (
-    <svg viewBox="0 0 60 30" className={className} aria-hidden fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 60 30"
+      className={className}
+      aria-hidden
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M3 22 C 14 4, 30 30, 52 12" />
       <path d="M44 9 L 53 11 L 50 20" />
     </svg>

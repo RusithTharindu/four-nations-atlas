@@ -8,6 +8,7 @@ import { Terrain } from "./Terrain";
 import { Landmarks } from "./Landmarks";
 import { AnchorProjector } from "./AnchorProjector";
 import { TravelPath } from "./TravelPath";
+import { PanelViewOffset } from "./PanelViewOffset";
 import { CameraFlyTo } from "./CameraFlyTo";
 import { useAtlas } from "@/store/atlas";
 import { useRef } from "react";
@@ -57,6 +58,7 @@ export default function Scene() {
       <AnchorProjector />
       <CameraRig />
       <CameraFlyTo />
+      <PanelViewOffset />
     </Canvas>
   );
 }

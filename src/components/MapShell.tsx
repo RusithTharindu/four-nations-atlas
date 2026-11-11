@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAtlas } from "@/store/atlas";
+import { UrlState } from "./UrlState";
 
 const Scene = dynamic(() => import("./scene/Scene"), {
   ssr: false,
@@ -29,6 +30,7 @@ export function MapShell() {
     <div className="absolute inset-0">
       <Scene />
       <MapOverlay />
+      <UrlState />
     </div>
   );
 }
