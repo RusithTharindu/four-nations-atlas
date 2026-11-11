@@ -23,6 +23,8 @@ export const AppearanceSchema = z.object({
   episode: EpisodeIdSchema,
   /** True when the location is only shown in a flashback in this episode. */
   flashback: z.boolean().optional(),
+  /** True when the location is only shown in a dream or vision in this episode. */
+  dream: z.boolean().optional(),
 });
 
 export const LocationSchema = z.object({

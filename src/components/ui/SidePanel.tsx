@@ -209,7 +209,11 @@ function PanelPage({
                           <span className="text-ink group-hover:underline group-hover:decoration-wavy">
                             {ep.title}
                           </span>
-                          {a.flashback && <span className="text-[11px] italic text-ink-soft">flashback</span>}
+                          {(a.flashback || a.dream) && (
+                            <span className="text-[11px] italic text-ink-soft">
+                              {a.flashback ? "flashback" : "dream"}
+                            </span>
+                          )}
                         </button>
                       </li>
                     );

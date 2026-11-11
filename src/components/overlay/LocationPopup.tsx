@@ -51,7 +51,8 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
   const meta = NATION_META[loc.nation];
   const tilt = hashTilt(loc.id) * 2.5;
   const first = episodeAt(firstAppearanceIndex(loc));
-  const firstIsFlashback = loc.appearances.find((a) => a.episode === first.id)?.flashback;
+  const firstAppearance = loc.appearances.find((a) => a.episode === first.id);
+  const firstNote = firstAppearance?.flashback ? " (flashback)" : firstAppearance?.dream ? " (dream)" : "";
   // Spoiler-safe: only what has aired by the timeline's current episode.
   const current = useAtlas((s) => s.episodeIndex);
   const events = eventsAtLocation(loc.id).filter((e) => episodeIndex(e.episode) <= current);
@@ -94,7 +95,7 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
         <p className="text-xs text-ink-soft">
           <span className="font-semibold text-ink">First seen: </span>
           {first.book}×{first.number} <span className="italic">{first.title}</span>
-          {firstIsFlashback && " (flashback)"} · {shown} episode{shown === 1 ? "" : "s"} so far
+          {firstNote} · {shown} episode{shown === 1 ? "" : "s"} so far
         </p>
         {!latest && <p className="mt-2 text-sm leading-snug text-ink">{loc.summary}</p>}
         {latest && latestEpisode && (

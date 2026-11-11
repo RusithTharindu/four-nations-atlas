@@ -9,7 +9,7 @@
  *  - episode numbering per Book has no gaps or duplicates (20 / 20 / 21)
  *  - ids are unique
  *  - every event points to a real episode and location
- *  - every location appearance points to a real episode
+ *  - every location appearance points to a real episode (and is not tagged both flashback and dream)
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -100,6 +100,7 @@ for (const loc of locations) {
   for (const a of loc.appearances) {
     if (!episodeIds.has(a.episode)) errors.push(`locations.json (${loc.id}): unknown episode "${a.episode}" in appearances`);
     if (seen.has(a.episode)) errors.push(`locations.json (${loc.id}): episode ${a.episode} listed twice`);
+    if (a.flashback && a.dream) errors.push(`locations.json (${loc.id}): ${a.episode} can't be both a flashback and a dream`);
     seen.add(a.episode);
   }
 }
