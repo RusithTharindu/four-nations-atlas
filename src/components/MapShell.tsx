@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useAtlas } from "@/store/atlas";
 
 const Scene = dynamic(() => import("./scene/Scene"), {
   ssr: false,
@@ -11,10 +13,22 @@ const Scene = dynamic(() => import("./scene/Scene"), {
   ),
 });
 
+// Client-only: it depends on the viewer's motion preference and the live camera.
+const MapOverlay = dynamic(() => import("./overlay/MapOverlay"), { ssr: false });
+
 export function MapShell() {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") useAtlas.getState().selectLocation(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <div className="absolute inset-0">
       <Scene />
+      <MapOverlay />
     </div>
   );
 }

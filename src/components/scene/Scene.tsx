@@ -6,12 +6,25 @@ import { CAMERA_DEFAULT, CameraRig } from "./CameraRig";
 import { Ocean } from "./Ocean";
 import { Terrain } from "./Terrain";
 import { Landmarks } from "./Landmarks";
+import { AnchorProjector } from "./AnchorProjector";
+import { CameraFlyTo } from "./CameraFlyTo";
+import { useAtlas } from "@/store/atlas";
+import { useRef } from "react";
 
 const SKY = "#bfe0ea";
 
 export default function Scene() {
+  const down = useRef<{ x: number; y: number } | null>(null);
   return (
     <Canvas
+      onPointerDown={(e) => {
+        down.current = { x: e.clientX, y: e.clientY };
+      }}
+      onPointerMissed={(e) => {
+        // Only a real click on the map (not the end of a drag) clears the selection.
+        const d = down.current;
+        if (d && Math.hypot(e.clientX - d.x, e.clientY - d.y) < 5) useAtlas.getState().selectLocation(null);
+      }}
       shadows
       dpr={[1, 2]}
       camera={{ position: CAMERA_DEFAULT.position, fov: CAMERA_DEFAULT.fov, near: 1, far: 900 }}
@@ -39,7 +52,9 @@ export default function Scene() {
       <Ocean />
       <Terrain />
       <Landmarks />
+      <AnchorProjector />
       <CameraRig />
+      <CameraFlyTo />
     </Canvas>
   );
 }
