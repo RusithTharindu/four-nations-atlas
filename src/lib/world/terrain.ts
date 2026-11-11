@@ -31,8 +31,10 @@ export const WORLD = {
   /** Terrain grid extent (x and z half-sizes). */
   halfX: 112,
   halfZ: 96,
-  /** Size of the ocean plane. */
+  /** Size of the detailed (wavy) ocean plane around the map. */
   oceanSize: 900,
+  /** Size of the flat open-sea plane that follows the camera; must exceed the max fog distance. */
+  outerOceanSize: 4000,
   /** World-space extent covered by the coast mask texture (square, centered). */
   maskExtent: 320,
   seaFloor: -4,

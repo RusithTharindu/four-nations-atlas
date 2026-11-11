@@ -69,8 +69,10 @@ export function DayNight({ shadows = true, animate = true }: DayNightProps) {
     fog.color.copy(background);
     // Keep the haze at the horizon however far the camera is pulled back.
     const dist = camera.position.length();
+    // fog.far must stay inside the camera's far plane and the open-sea plane,
+    // so the horizon is always pure fog colour and no edge can show.
     fog.near = dist * 1.35;
-    fog.far = dist * 3.2;
+    fog.far = Math.min(dist * 3.2, 1500);
     scene.background = background;
     scene.fog = fog;
     blend(PALETTE.tint, night, dusk, ambient.tint);

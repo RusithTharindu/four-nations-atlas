@@ -107,11 +107,17 @@ export function Ocean({ segments = 160, maskSize = 256, animate = true }: OceanP
     }),
     [mask],
   );
+  // The outer ocean shares every uniform object (time, tint, fog…) but stays flat.
+  const outerUniforms = useMemo(() => ({ ...uniforms, uAmp: { value: 0 } }), [uniforms]);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const outer = useRef<THREE.Mesh>(null);
 
   useEffect(() => () => mask.dispose(), [mask]);
 
-  useFrame((_, delta) => {
+  useFrame(({ camera }, delta) => {
+    // Keep the outer plane centred under the camera so the sea never runs out;
+    // the shader works in world space, so moving the plane doesn't move the pattern.
+    if (outer.current) outer.current.position.set(camera.position.x, -0.4, camera.position.z);
     const m = materialRef.current;
     if (!m) return;
     if (animate) m.uniforms.uTime.value += delta;
@@ -119,15 +125,29 @@ export function Ocean({ segments = 160, maskSize = 256, animate = true }: OceanP
   });
 
   return (
-    <mesh rotation-x={-Math.PI / 2} receiveShadow>
-      <planeGeometry args={[WORLD.oceanSize, WORLD.oceanSize, segments, segments]} />
-      <shaderMaterial
-        ref={materialRef}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        fog
-      />
-    </mesh>
+    <>
+      {/* Detailed, wavy ocean around the map */}
+      <mesh rotation-x={-Math.PI / 2} receiveShadow>
+        <planeGeometry args={[WORLD.oceanSize, WORLD.oceanSize, segments, segments]} />
+        <shaderMaterial
+          ref={materialRef}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={uniforms}
+          fog
+        />
+      </mesh>
+      {/* Flat open sea that follows the camera out to (and past) the fogged horizon.
+          It sits just below the wave troughs, so the detailed ocean always draws on top. */}
+      <mesh ref={outer} rotation-x={-Math.PI / 2} position-y={-0.4} frustumCulled={false}>
+        <planeGeometry args={[WORLD.outerOceanSize, WORLD.outerOceanSize, 1, 1]} />
+        <shaderMaterial
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={outerUniforms}
+          fog
+        />
+      </mesh>
+    </>
   );
 }

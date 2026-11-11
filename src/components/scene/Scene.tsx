@@ -36,7 +36,7 @@ export default function Scene() {
       }}
       shadows={quality.shadows}
       dpr={dpr}
-      camera={{ position: CAMERA_DEFAULT.position, fov: CAMERA_DEFAULT.fov, near: 1, far: 900 }}
+      camera={{ position: CAMERA_DEFAULT.position, fov: CAMERA_DEFAULT.fov, near: 1, far: 3000 }}
       gl={{
         antialias: quality.tier === "high",
         powerPreference: "high-performance",
