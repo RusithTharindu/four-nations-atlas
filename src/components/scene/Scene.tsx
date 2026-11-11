@@ -7,6 +7,7 @@ import { Ocean } from "./Ocean";
 import { Terrain } from "./Terrain";
 import { Landmarks } from "./Landmarks";
 import { AnchorProjector } from "./AnchorProjector";
+import { TravelPath } from "./TravelPath";
 import { CameraFlyTo } from "./CameraFlyTo";
 import { useAtlas } from "@/store/atlas";
 import { useRef } from "react";
@@ -52,6 +53,7 @@ export default function Scene() {
       <Ocean />
       <Terrain />
       <Landmarks />
+      <TravelPath />
       <AnchorProjector />
       <CameraRig />
       <CameraFlyTo />

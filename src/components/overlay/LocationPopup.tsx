@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
+  appearancesUpTo,
   episodeAt,
   episodeIndex,
   eventsAtLocation,
@@ -47,7 +48,10 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
   const tilt = hashTilt(loc.id) * 2.5;
   const first = episodeAt(firstAppearanceIndex(loc));
   const firstIsFlashback = loc.appearances.find((a) => a.episode === first.id)?.flashback;
-  const events = eventsAtLocation(loc.id);
+  // Spoiler-safe: only what has aired by the timeline's current episode.
+  const current = useAtlas((s) => s.episodeIndex);
+  const events = eventsAtLocation(loc.id).filter((e) => episodeIndex(e.episode) <= current);
+  const shown = appearancesUpTo(loc, current).length;
   const latest = events.length ? events[events.length - 1] : null;
   const latestEpisode = latest ? episodeAt(episodeIndex(latest.episode)) : null;
 
@@ -91,7 +95,7 @@ function PopupCard({ loc }: { loc: AtlasLocation }) {
           <div>
             <dt className="inline font-semibold text-ink">Shown in: </dt>
             <dd className="inline">
-              {loc.appearances.length} episode{loc.appearances.length === 1 ? "" : "s"}
+              {shown} episode{shown === 1 ? "" : "s"} so far
             </dd>
           </div>
         </dl>

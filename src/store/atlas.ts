@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { NATIONS, BOOKS, type Book, type Nation } from "@/types/atlas";
-import { EPISODE_COUNT } from "@/lib/data";
+import { EPISODE_COUNT, getLocation, isLocationVisibleAt } from "@/lib/data";
 
 export interface AtlasState {
   /** 0-based index into the broadcast-ordered episode list. */
@@ -22,6 +22,13 @@ export interface AtlasState {
   setPlaying: (playing: boolean) => void;
 }
 
+/** Moving the timeline also drops a selection that hasn't "aired" yet. */
+function withEpisode(s: AtlasState, episodeIndex: number): Partial<AtlasState> {
+  const selected = getLocation(s.selectedLocationId);
+  const keep = selected && isLocationVisibleAt(selected, episodeIndex);
+  return { episodeIndex, selectedLocationId: keep ? s.selectedLocationId : null };
+}
+
 const clampEpisode = (i: number) => Math.min(Math.max(Math.round(i), 0), EPISODE_COUNT - 1);
 
 export const useAtlas = create<AtlasState>()((set) => ({
@@ -34,8 +41,8 @@ export const useAtlas = create<AtlasState>()((set) => ({
   search: "",
   isPlaying: false,
 
-  setEpisodeIndex: (index) => set({ episodeIndex: clampEpisode(index) }),
-  stepEpisode: (delta) => set((s) => ({ episodeIndex: clampEpisode(s.episodeIndex + delta) })),
+  setEpisodeIndex: (index) => set((s) => withEpisode(s, clampEpisode(index))),
+  stepEpisode: (delta) => set((s) => withEpisode(s, clampEpisode(s.episodeIndex + delta))),
   selectLocation: (id) => set({ selectedLocationId: id }),
   hoverLocation: (id) => set({ hoveredLocationId: id }),
   toggleNation: (nation) => set((s) => ({ nations: { ...s.nations, [nation]: !s.nations[nation] } })),

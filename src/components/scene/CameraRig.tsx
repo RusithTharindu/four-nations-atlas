@@ -5,8 +5,8 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { WORLD } from "@/lib/world/terrain";
 
 export const CAMERA_DEFAULT = {
-  position: [18, 118, 132] as [number, number, number],
-  target: [4, 0, 6] as [number, number, number],
+  position: [18, 128, 150] as [number, number, number],
+  target: [4, 0, 14] as [number, number, number],
   fov: 38,
 };
 

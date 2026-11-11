@@ -75,3 +75,22 @@ export const NATION_META: Record<Nation, { label: string; ink: string; tint: str
 export function formatEpisode(e: Episode): string {
   return `Book ${e.book} · Ep. ${e.number}`;
 }
+
+/** A location is on the map once its first on-screen appearance has aired. */
+export function isLocationVisibleAt(location: AtlasLocation, index: number): boolean {
+  return firstAppearanceIndex(location) <= index;
+}
+
+/** Appearances that have aired by episode `index` (spoiler-safe). */
+export function appearancesUpTo(location: AtlasLocation, index: number) {
+  return location.appearances.filter((a) => episodeIndex(a.episode) <= index);
+}
+
+export function eventsUpTo(index: number): AtlasEvent[] {
+  return events.filter((e) => episodeIndex(e.episode) <= index);
+}
+
+export const BOOK_RANGES: { book: Book; start: number; end: number }[] = ([1, 2, 3] as Book[]).map((book) => {
+  const idx = episodes.flatMap((e, i) => (e.book === book ? [i] : []));
+  return { book, start: idx[0], end: idx[idx.length - 1] };
+});
