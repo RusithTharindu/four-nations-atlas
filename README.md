@@ -18,6 +18,10 @@ npm run typecheck      # tsc --noEmit
 npm run validate:data  # validate /data (or: npm run validate:data -- <dir>)
 ```
 
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every pull request and on pushes to `main`. After a clean `npm ci` it runs `lint`, `typecheck`, `validate:data` and `build`, the same scripts as above, so a PR that breaks the lore data fails CI as surely as one that breaks the code.
+
 ## Data
 
 The data lives in `/data` as typed JSON. Its schemas are in `src/types/atlas.ts`.
