@@ -25,7 +25,7 @@ The data lives in `/data` as typed JSON. Its schemas are in `src/types/atlas.ts`
 | File | Contents |
 | --- | --- |
 | `episodes.json` | All 61 episodes in broadcast order: id (`"2-15"`), book, number, official title, source |
-| `locations.json` | Places on the map, their nation, map position, an original summary, the episodes where they are **shown on screen** (flashbacks flagged), and a source |
+| `locations.json` | Places on the map, their nation, map position, an original summary, the episodes where they are **shown on screen** (flashbacks and dreams flagged), and a source |
 | `events.json` | One- or two-sentence original summaries tied to an exact episode and location, with a source |
 | `NEEDS_REVIEW.md` | Facts left out because they couldn't be confirmed |
 
