@@ -6,8 +6,9 @@ import gsap from "gsap";
 import type { PerspectiveCamera } from "three";
 import { prefersReducedMotion } from "@/lib/motion";
 import { useAtlas } from "@/store/atlas";
+import { SHEET_PEEK } from "@/lib/quality";
 
-/** Width the side panel takes from the right edge (panel + gutter), desktop only. */
+/** Width the side panel takes from the right edge (panel + gutter) on desktop. */
 const PANEL_SPACE = 396;
 const DESKTOP_MIN = 768;
 
@@ -18,17 +19,24 @@ const DESKTOP_MIN = 768;
 export function PanelViewOffset() {
   const camera = useThree((s) => s.camera) as PerspectiveCamera;
   const size = useThree((s) => s.size);
-  const offset = useRef({ px: 0 });
-  const applied = useRef(-1);
+  const offset = useRef({ px: 0, py: 0 });
+  const applied = useRef("");
 
   useEffect(() => {
-    const target = (open: boolean) => (open && window.innerWidth >= DESKTOP_MIN ? PANEL_SPACE / 2 : 0);
+    // Desktop: the panel covers the right edge → shift the view left.
+    // Phone: the bottom sheet peeks up from below → shift the view up.
+    const target = (open: boolean) => {
+      if (!open) return { px: 0, py: 0 };
+      return window.innerWidth >= DESKTOP_MIN
+        ? { px: PANEL_SPACE / 2, py: 0 }
+        : { px: 0, py: (window.innerHeight * SHEET_PEEK) / 2 };
+    };
     let tween: gsap.core.Tween | null = null;
     const go = (open: boolean) => {
       tween?.kill();
-      const px = target(open);
-      if (prefersReducedMotion()) offset.current.px = px;
-      else tween = gsap.to(offset.current, { px, duration: 0.6, ease: "power2.out" });
+      const to = target(open);
+      if (prefersReducedMotion()) Object.assign(offset.current, to);
+      else tween = gsap.to(offset.current, { ...to, duration: 0.6, ease: "power2.out" });
     };
     go(!!useAtlas.getState().selectedLocationId);
     const unsub = useAtlas.subscribe((s, p) => {
@@ -42,11 +50,12 @@ export function PanelViewOffset() {
 
   useFrame(() => {
     const px = Math.round(offset.current.px * 10) / 10;
-    const key = px + size.width * 1e-4 + size.height * 1e-8;
+    const py = Math.round(offset.current.py * 10) / 10;
+    const key = `${px}|${py}|${size.width}|${size.height}`;
     if (key === applied.current) return;
     applied.current = key;
-    if (px === 0) camera.clearViewOffset();
-    else camera.setViewOffset(size.width, size.height, px, 0, size.width, size.height);
+    if (px === 0 && py === 0) camera.clearViewOffset();
+    else camera.setViewOffset(size.width, size.height, px, py, size.width, size.height);
     camera.updateProjectionMatrix();
   });
 

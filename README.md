@@ -34,3 +34,10 @@ Lore rules: canon is the original series only. Nothing is invented. Anything unc
 ## Shareable links
 
 The current episode and selected place are kept in the URL, for example `/?episode=2-15&location=ba-sing-se`. A link to a place that hasn't aired yet at the given episode moves the timeline to its first appearance.
+
+## Performance and accessibility
+
+- **Quality tiers** (`src/lib/quality.ts`): phones and weaker touch devices get a lower pixel ratio, coarser terrain and ocean meshes, no shadows, fewer clouds and about 30% of the particles. A `PerformanceMonitor` also drops to a 1× pixel ratio if the frame rate falls.
+- **Phones**: the details panel becomes a draggable bottom sheet (peek / expand / swipe down to close), the map shifts up above it, and the filter chips scroll in one row.
+- **`prefers-reduced-motion`**: there are no camera fly-tos; the camera cuts to the place under a short paper fade. Particles are off. Clouds, the day/night cycle, the waves and the lava glow are frozen. Markers don't wiggle, the travel path appears without drawing itself, and panels and popups fade in instead of sliding or bouncing.
+- Markers are buttons, the timeline is a keyboard-operable `role="slider"` (arrows, PageUp/PageDown, Home/End), search is a combobox, and Esc closes the current selection.

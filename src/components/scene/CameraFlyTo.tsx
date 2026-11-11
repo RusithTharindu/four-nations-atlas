@@ -7,7 +7,8 @@ import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { getLocation } from "@/lib/data";
 import { markerPosition } from "@/lib/world/markers";
-import { prefersReducedMotion } from "@/lib/motion";
+import { announceCameraCut, prefersReducedMotion } from "@/lib/motion";
+import { fitDistanceFactor } from "./CameraRig";
 import { useAtlas } from "@/store/atlas";
 
 const FRAME_DISTANCE = 72;
@@ -22,6 +23,11 @@ export function CameraFlyTo() {
   const controls = useThree((s) => s.controls) as OrbitControlsImpl | null;
   const camera = useThree((s) => s.camera);
   const tween = useRef<gsap.core.Tween | null>(null);
+  const size = useThree((s) => s.size);
+  const aspectRef = useRef(1.6);
+  useEffect(() => {
+    aspectRef.current = size.width / size.height;
+  }, [size]);
 
   useEffect(() => {
     if (!controls) return;
@@ -48,11 +54,13 @@ export function CameraFlyTo() {
             Math.sin(azimuth) * Math.sin(FRAME_POLAR),
             Math.cos(FRAME_POLAR),
             Math.cos(azimuth) * Math.sin(FRAME_POLAR),
-          ).multiplyScalar(FRAME_DISTANCE),
+          ).multiplyScalar(FRAME_DISTANCE * Math.min(fitDistanceFactor(aspectRef.current), 1.6)),
         );
 
       cancel();
       if (prefersReducedMotion()) {
+        // No flight: cut straight there and let the UI cover the jump with a short fade.
+        announceCameraCut();
         controls.target.copy(endTarget);
         camera.position.copy(endPos);
         controls.update();

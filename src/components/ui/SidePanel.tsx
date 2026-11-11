@@ -1,6 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useDragControls, useReducedMotion } from "motion/react";
+import { useMediaQuery } from "@/lib/useMediaQuery";
+import { MOBILE_QUERY, SHEET_PEEK } from "@/lib/quality";
 import { BOOK_NAMES, episodeAt, episodeIndex, eventsAtLocation, getLocation, NATION_META } from "@/lib/data";
 import { useAtlas } from "@/store/atlas";
 import type { AtlasLocation, Book } from "@/types/atlas";
@@ -8,30 +11,113 @@ import { Underline } from "./Doodles";
 import { NationIcon } from "./NationIcon";
 import { RoughBox } from "./RoughBox";
 
-/** Sketchbook page with the full details of the selected location. */
+/**
+ * Full details of the selected location: a sketchbook page sliding in from the
+ * right on wide screens, a draggable bottom sheet on phones.
+ */
 export function SidePanel() {
   const selected = getLocation(useAtlas((s) => s.selectedLocationId));
+  const mobile = useMediaQuery(MOBILE_QUERY);
   const reduce = useReducedMotion();
   return (
     <AnimatePresence>
-      {selected && (
-        <motion.aside
-          key="panel"
-          aria-label={`${selected.name} details`}
-          className="pointer-events-auto absolute bottom-[132px] right-4 top-28 z-20 w-[380px] max-w-[calc(100vw-2rem)]"
-          initial={reduce ? { opacity: 0 } : { x: "110%", rotate: 3 }}
-          animate={reduce ? { opacity: 1 } : { x: 0, rotate: 0.6 }}
-          exit={reduce ? { opacity: 0 } : { x: "110%", rotate: 3 }}
-          transition={reduce ? { duration: 0.2 } : { type: "spring", stiffness: 260, damping: 28 }}
-        >
-          <PanelPage loc={selected} />
-        </motion.aside>
-      )}
+      {selected &&
+        (mobile ? (
+          <BottomSheet key="sheet" loc={selected} />
+        ) : (
+          <motion.aside
+            key="panel"
+            aria-label={`${selected.name} details`}
+            className="pointer-events-auto absolute bottom-[132px] right-4 top-28 z-20 w-[380px] max-w-[calc(100vw-2rem)]"
+            initial={reduce ? { opacity: 0 } : { x: "110%", rotate: 3 }}
+            animate={reduce ? { opacity: 1 } : { x: 0, rotate: 0.6 }}
+            exit={reduce ? { opacity: 0 } : { x: "110%", rotate: 3 }}
+            transition={reduce ? { duration: 0.2 } : { type: "spring", stiffness: 260, damping: 28 }}
+          >
+            <PanelPage loc={selected} />
+          </motion.aside>
+        ))}
     </AnimatePresence>
   );
 }
 
-function PanelPage({ loc }: { loc: AtlasLocation }) {
+/** Share of the viewport the sheet covers when expanded (peek size lives in quality.ts). */
+const SHEET_FULL = 0.86;
+
+function BottomSheet({ loc }: { loc: AtlasLocation }) {
+  const reduce = useReducedMotion();
+  const selectLocation = useAtlas((s) => s.selectLocation);
+  const controls = useDragControls();
+  const [expanded, setExpanded] = useState(false);
+  const [vh, setVh] = useState(() => (typeof window === "undefined" ? 800 : window.innerHeight));
+  useEffect(() => {
+    const onResize = () => setVh(window.innerHeight);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const height = vh * SHEET_FULL;
+  const peekY = height - vh * SHEET_PEEK; // translateY that leaves only the peek visible
+
+  return (
+    <motion.aside
+      aria-label={`${loc.name} details`}
+      className="pointer-events-auto fixed inset-x-0 bottom-0 z-40 px-2"
+      style={{ height }}
+      initial={reduce ? { opacity: 0, y: peekY } : { y: height }}
+      animate={{ opacity: 1, y: expanded ? 0 : peekY }}
+      exit={reduce ? { opacity: 0 } : { y: height }}
+      transition={reduce ? { duration: 0.2 } : { type: "spring", stiffness: 300, damping: 32 }}
+      drag="y"
+      dragListener={false}
+      dragControls={controls}
+      dragConstraints={{ top: 0, bottom: height }}
+      dragElastic={0.08}
+      onDragEnd={(_, info) => {
+        const y = (expanded ? 0 : peekY) + info.offset.y;
+        if (y > peekY + 90 || info.velocity.y > 700) selectLocation(null);
+        else setExpanded(y < peekY / 2 || info.velocity.y < -500);
+      }}
+    >
+      <div
+        className="absolute inset-x-0 top-0 z-10 flex h-9 cursor-grab touch-none items-center justify-center active:cursor-grabbing"
+        onPointerDown={(e) => controls.start(e)}
+        onClick={() => setExpanded((v) => !v)}
+        role="button"
+        tabIndex={0}
+        aria-label={expanded ? "Collapse details" : "Expand details"}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setExpanded((v) => !v);
+          }
+        }}
+      >
+        {/* A doodled grab handle */}
+        <svg viewBox="0 0 60 8" className="h-2 w-14" aria-hidden>
+          <path
+            d="M3 4.5 C 15 2.5, 30 6, 57 3.5"
+            fill="none"
+            stroke="var(--ink-soft)"
+            strokeWidth={3}
+            strokeLinecap="round"
+          />
+        </svg>
+      </div>
+      <PanelPage loc={loc} variant="sheet" scrollable={expanded} />
+    </motion.aside>
+  );
+}
+
+function PanelPage({
+  loc,
+  variant = "page",
+  scrollable = true,
+}: {
+  loc: AtlasLocation;
+  variant?: "page" | "sheet";
+  scrollable?: boolean;
+}) {
   const current = useAtlas((s) => s.episodeIndex);
   const selectLocation = useAtlas((s) => s.selectLocation);
   const setEpisodeIndex = useAtlas((s) => s.setEpisodeIndex);
@@ -56,6 +142,7 @@ function PanelPage({ loc }: { loc: AtlasLocation }) {
     <RoughBox seed={loc.id.length * 13} className="h-full" contentClassName="h-full" roughness={1.2}>
       {/* Spiral binding down the left edge */}
       <div
+        hidden={variant === "sheet"}
         className="pointer-events-none absolute -left-2 top-6 bottom-6 flex flex-col justify-between"
         aria-hidden
       >
@@ -64,7 +151,11 @@ function PanelPage({ loc }: { loc: AtlasLocation }) {
         ))}
       </div>
 
-      <div className="flex h-full max-h-full min-h-0 flex-col overflow-hidden py-4 pl-7 pr-4">
+      <div
+        className={`flex h-full max-h-full min-h-0 flex-col overflow-hidden pr-4 ${
+          variant === "sheet" ? "pb-4 pl-4 pt-7" : "py-4 pl-7"
+        }`}
+      >
         <div className="flex items-start justify-between gap-2">
           <div>
             <div
@@ -87,7 +178,11 @@ function PanelPage({ loc }: { loc: AtlasLocation }) {
           </button>
         </div>
 
-        <div className="mt-3 min-h-0 flex-1 space-y-5 overflow-y-auto pr-1 [scrollbar-width:thin]">
+        <div
+          className={`mt-3 min-h-0 flex-1 space-y-5 pr-1 [scrollbar-width:thin] ${
+            scrollable ? "overflow-y-auto" : "overflow-hidden"
+          }`}
+        >
           <p className="text-sm leading-relaxed text-ink">{loc.summary}</p>
 
           <section>

@@ -9,11 +9,11 @@ export default function Home() {
     <main className="relative h-full w-full overflow-hidden">
       <MapShell />
 
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-30 flex flex-wrap items-start gap-x-6 gap-y-2 bg-gradient-to-b from-paper/80 via-paper/40 to-transparent px-4 pb-6 pt-3 sm:px-6">
-        <h1 className="font-hand text-4xl font-bold leading-none text-ink drop-shadow-[0_1px_0_rgba(255,255,255,0.7)] sm:text-5xl">
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-30 flex flex-col gap-1.5 bg-gradient-to-b from-paper/85 via-paper/50 to-transparent px-4 pb-6 pt-3 sm:flex-row sm:flex-wrap sm:items-start sm:gap-x-6 sm:gap-y-2 sm:px-6">
+        <h1 className="font-hand text-3xl font-bold leading-none text-ink drop-shadow-[0_1px_0_rgba(255,255,255,0.7)] sm:text-5xl">
           Four Nations Atlas
         </h1>
-        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-5 gap-y-2 pt-1">
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2 sm:pt-1">
           <SearchBox />
           <FilterChips />
         </div>

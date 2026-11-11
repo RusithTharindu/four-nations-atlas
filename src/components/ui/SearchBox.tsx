@@ -59,7 +59,7 @@ export function SearchBox() {
   };
 
   return (
-    <div className="pointer-events-auto relative w-full max-w-[280px]">
+    <div className="pointer-events-auto relative w-full sm:max-w-[280px]">
       <label className="relative flex items-center gap-2 px-1">
         <svg
           viewBox="0 0 24 24"

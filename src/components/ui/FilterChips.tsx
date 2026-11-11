@@ -65,7 +65,11 @@ export function FilterChips() {
   const toggleBook = useAtlas((s) => s.toggleBook);
 
   return (
-    <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filters">
+    <div
+      className="pointer-events-auto -mx-4 flex flex-nowrap items-center gap-1.5 overflow-x-auto px-4 py-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+      role="group"
+      aria-label="Filters"
+    >
       {NATIONS.map((n: Nation, i) => {
         const meta = NATION_META[n];
         return (

@@ -32,7 +32,7 @@ export const WORLD = {
   halfX: 112,
   halfZ: 96,
   /** Size of the ocean plane. */
-  oceanSize: 420,
+  oceanSize: 900,
   /** World-space extent covered by the coast mask texture (square, centered). */
   maskExtent: 320,
   seaFloor: -4,

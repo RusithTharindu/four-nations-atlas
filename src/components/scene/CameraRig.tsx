@@ -1,5 +1,7 @@
 "use client";
 
+import { useLayoutEffect } from "react";
+import { useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { WORLD } from "@/lib/world/terrain";
@@ -17,7 +19,24 @@ const LIMIT_Z = WORLD.halfZ * 0.85;
  * Orbit controls with limits: the camera can never dip to the horizon or below
  * the ocean, zoom is clamped, and panning is kept over the map.
  */
+/** Narrow screens see less of the map horizontally, so pull the camera back to fit it. */
+export function fitDistanceFactor(aspect: number): number {
+  return aspect >= 1.3 ? 1 : Math.min(2.6, 1.3 / aspect);
+}
+
 export function CameraRig() {
+  const camera = useThree((s) => s.camera);
+  const aspect = useThree((s) => s.size.width / s.size.height);
+
+  // Initial framing only: once the user moves the camera we leave it alone.
+  useLayoutEffect(() => {
+    const k = fitDistanceFactor(aspect);
+    const [tx, ty, tz] = CAMERA_DEFAULT.target;
+    const [px, py, pz] = CAMERA_DEFAULT.position;
+    camera.position.set(tx + (px - tx) * k, ty + (py - ty) * k, tz + (pz - tz) * k);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [camera]);
+
   return (
     <OrbitControls
       makeDefault
@@ -29,7 +48,7 @@ export function CameraRig() {
       panSpeed={0.8}
       screenSpacePanning={false}
       minDistance={22}
-      maxDistance={240}
+      maxDistance={420}
       minPolarAngle={0.12}
       maxPolarAngle={1.18}
       onChange={(e) => {

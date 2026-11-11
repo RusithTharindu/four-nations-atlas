@@ -55,7 +55,7 @@ export function DayNight({ shadows = true, animate = true }: DayNightProps) {
     };
   }, []);
 
-  useFrame(({ scene }, delta) => {
+  useFrame(({ scene, camera }, delta) => {
     if (animate) time.current += Math.min(delta, 0.1);
     const phase = (time.current / DAY_LENGTH) % 1;
     // elevation: 1 at noon, -1 at midnight
@@ -67,6 +67,10 @@ export function DayNight({ shadows = true, animate = true }: DayNightProps) {
     const fog = fogRef.current;
     blend(PALETTE.sky, night, dusk, background);
     fog.color.copy(background);
+    // Keep the haze at the horizon however far the camera is pulled back.
+    const dist = camera.position.length();
+    fog.near = dist * 1.35;
+    fog.far = dist * 3.2;
     scene.background = background;
     scene.fog = fog;
     blend(PALETTE.tint, night, dusk, ambient.tint);

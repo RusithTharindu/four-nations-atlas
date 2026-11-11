@@ -47,7 +47,7 @@ function Marker({ loc }: { loc: AtlasLocation }) {
             >
               <svg
                 viewBox="0 0 44 54"
-                className="marker-pin h-[54px] w-[44px] drop-shadow-[0_2px_1px_rgba(0,0,0,0.3)]"
+                className="marker-pin h-[44px] w-[36px] sm:h-[54px] sm:w-[44px] drop-shadow-[0_2px_1px_rgba(0,0,0,0.3)]"
               >
                 {/* Pin body: a slightly lopsided ink teardrop. */}
                 <path

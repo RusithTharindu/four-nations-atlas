@@ -13,6 +13,8 @@ import {
 } from "@/lib/data";
 import { hashTilt } from "@/lib/motion";
 import { useAtlas } from "@/store/atlas";
+import { useMediaQuery } from "@/lib/useMediaQuery";
+import { MOBILE_QUERY } from "@/lib/quality";
 import { RoughBox } from "@/components/ui/RoughBox";
 import { DoodleArrow, Underline } from "@/components/ui/Doodles";
 import { NationIcon } from "@/components/ui/NationIcon";
@@ -23,12 +25,14 @@ import { ANCHOR_STYLE, useAnchor } from "@/lib/anchors";
 /** Doodled sticky-note card anchored above the selected marker. */
 export function LocationPopup() {
   const selectedId = useAtlas((s) => s.selectedLocationId);
+  // On phones the bottom sheet carries the details; a popup would just cover the map.
+  const mobile = useMediaQuery(MOBILE_QUERY);
   // Keep the last anchor so the card can play its exit animation in place.
   const [anchorId, setAnchorId] = useState<string | null>(selectedId);
   if (selectedId && selectedId !== anchorId) setAnchorId(selectedId);
 
   const anchor = getLocation(anchorId);
-  if (!anchor) return null;
+  if (!anchor || mobile) return null;
   return <PopupAnchor loc={anchor} open={selectedId === anchor.id} />;
 }
 
