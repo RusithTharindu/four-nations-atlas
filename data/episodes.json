@@ -1,0 +1,429 @@
+[
+  {
+    "id": "1-1",
+    "book": 1,
+    "number": 1,
+    "title": "The Boy in the Iceberg",
+    "source": "https://avatar.fandom.com/wiki/The_Boy_in_the_Iceberg"
+  },
+  {
+    "id": "1-2",
+    "book": 1,
+    "number": 2,
+    "title": "The Avatar Returns",
+    "source": "https://avatar.fandom.com/wiki/The_Avatar_Returns"
+  },
+  {
+    "id": "1-3",
+    "book": 1,
+    "number": 3,
+    "title": "The Southern Air Temple",
+    "source": "https://avatar.fandom.com/wiki/The_Southern_Air_Temple"
+  },
+  {
+    "id": "1-4",
+    "book": 1,
+    "number": 4,
+    "title": "The Warriors of Kyoshi",
+    "source": "https://avatar.fandom.com/wiki/The_Warriors_of_Kyoshi"
+  },
+  {
+    "id": "1-5",
+    "book": 1,
+    "number": 5,
+    "title": "The King of Omashu",
+    "source": "https://avatar.fandom.com/wiki/The_King_of_Omashu"
+  },
+  {
+    "id": "1-6",
+    "book": 1,
+    "number": 6,
+    "title": "Imprisoned",
+    "source": "https://avatar.fandom.com/wiki/Imprisoned"
+  },
+  {
+    "id": "1-7",
+    "book": 1,
+    "number": 7,
+    "title": "Winter Solstice, Part 1: The Spirit World",
+    "source": "https://avatar.fandom.com/wiki/Winter_Solstice,_Part_1:_The_Spirit_World"
+  },
+  {
+    "id": "1-8",
+    "book": 1,
+    "number": 8,
+    "title": "Winter Solstice, Part 2: Avatar Roku",
+    "source": "https://avatar.fandom.com/wiki/Winter_Solstice,_Part_2:_Avatar_Roku"
+  },
+  {
+    "id": "1-9",
+    "book": 1,
+    "number": 9,
+    "title": "The Waterbending Scroll",
+    "source": "https://avatar.fandom.com/wiki/The_Waterbending_Scroll"
+  },
+  {
+    "id": "1-10",
+    "book": 1,
+    "number": 10,
+    "title": "Jet",
+    "source": "https://avatar.fandom.com/wiki/Jet_(episode)"
+  },
+  {
+    "id": "1-11",
+    "book": 1,
+    "number": 11,
+    "title": "The Great Divide",
+    "source": "https://avatar.fandom.com/wiki/The_Great_Divide"
+  },
+  {
+    "id": "1-12",
+    "book": 1,
+    "number": 12,
+    "title": "The Storm",
+    "source": "https://avatar.fandom.com/wiki/The_Storm"
+  },
+  {
+    "id": "1-13",
+    "book": 1,
+    "number": 13,
+    "title": "The Blue Spirit",
+    "source": "https://avatar.fandom.com/wiki/The_Blue_Spirit"
+  },
+  {
+    "id": "1-14",
+    "book": 1,
+    "number": 14,
+    "title": "The Fortuneteller",
+    "source": "https://avatar.fandom.com/wiki/The_Fortuneteller"
+  },
+  {
+    "id": "1-15",
+    "book": 1,
+    "number": 15,
+    "title": "Bato of the Water Tribe",
+    "source": "https://avatar.fandom.com/wiki/Bato_of_the_Water_Tribe"
+  },
+  {
+    "id": "1-16",
+    "book": 1,
+    "number": 16,
+    "title": "The Deserter",
+    "source": "https://avatar.fandom.com/wiki/The_Deserter"
+  },
+  {
+    "id": "1-17",
+    "book": 1,
+    "number": 17,
+    "title": "The Northern Air Temple",
+    "source": "https://avatar.fandom.com/wiki/The_Northern_Air_Temple"
+  },
+  {
+    "id": "1-18",
+    "book": 1,
+    "number": 18,
+    "title": "The Waterbending Master",
+    "source": "https://avatar.fandom.com/wiki/The_Waterbending_Master"
+  },
+  {
+    "id": "1-19",
+    "book": 1,
+    "number": 19,
+    "title": "The Siege of the North, Part 1",
+    "source": "https://avatar.fandom.com/wiki/The_Siege_of_the_North,_Part_1"
+  },
+  {
+    "id": "1-20",
+    "book": 1,
+    "number": 20,
+    "title": "The Siege of the North, Part 2",
+    "source": "https://avatar.fandom.com/wiki/The_Siege_of_the_North,_Part_2"
+  },
+  {
+    "id": "2-1",
+    "book": 2,
+    "number": 1,
+    "title": "The Avatar State",
+    "source": "https://avatar.fandom.com/wiki/The_Avatar_State"
+  },
+  {
+    "id": "2-2",
+    "book": 2,
+    "number": 2,
+    "title": "The Cave of Two Lovers",
+    "source": "https://avatar.fandom.com/wiki/The_Cave_of_Two_Lovers"
+  },
+  {
+    "id": "2-3",
+    "book": 2,
+    "number": 3,
+    "title": "Return to Omashu",
+    "source": "https://avatar.fandom.com/wiki/Return_to_Omashu"
+  },
+  {
+    "id": "2-4",
+    "book": 2,
+    "number": 4,
+    "title": "The Swamp",
+    "source": "https://avatar.fandom.com/wiki/The_Swamp"
+  },
+  {
+    "id": "2-5",
+    "book": 2,
+    "number": 5,
+    "title": "Avatar Day",
+    "source": "https://avatar.fandom.com/wiki/Avatar_Day"
+  },
+  {
+    "id": "2-6",
+    "book": 2,
+    "number": 6,
+    "title": "The Blind Bandit",
+    "source": "https://avatar.fandom.com/wiki/The_Blind_Bandit"
+  },
+  {
+    "id": "2-7",
+    "book": 2,
+    "number": 7,
+    "title": "Zuko Alone",
+    "source": "https://avatar.fandom.com/wiki/Zuko_Alone"
+  },
+  {
+    "id": "2-8",
+    "book": 2,
+    "number": 8,
+    "title": "The Chase",
+    "source": "https://avatar.fandom.com/wiki/The_Chase"
+  },
+  {
+    "id": "2-9",
+    "book": 2,
+    "number": 9,
+    "title": "Bitter Work",
+    "source": "https://avatar.fandom.com/wiki/Bitter_Work"
+  },
+  {
+    "id": "2-10",
+    "book": 2,
+    "number": 10,
+    "title": "The Library",
+    "source": "https://avatar.fandom.com/wiki/The_Library"
+  },
+  {
+    "id": "2-11",
+    "book": 2,
+    "number": 11,
+    "title": "The Desert",
+    "source": "https://avatar.fandom.com/wiki/The_Desert"
+  },
+  {
+    "id": "2-12",
+    "book": 2,
+    "number": 12,
+    "title": "The Serpent's Pass",
+    "source": "https://avatar.fandom.com/wiki/The_Serpent's_Pass"
+  },
+  {
+    "id": "2-13",
+    "book": 2,
+    "number": 13,
+    "title": "The Drill",
+    "source": "https://avatar.fandom.com/wiki/The_Drill"
+  },
+  {
+    "id": "2-14",
+    "book": 2,
+    "number": 14,
+    "title": "City of Walls and Secrets",
+    "source": "https://avatar.fandom.com/wiki/City_of_Walls_and_Secrets"
+  },
+  {
+    "id": "2-15",
+    "book": 2,
+    "number": 15,
+    "title": "The Tales of Ba Sing Se",
+    "source": "https://avatar.fandom.com/wiki/The_Tales_of_Ba_Sing_Se"
+  },
+  {
+    "id": "2-16",
+    "book": 2,
+    "number": 16,
+    "title": "Appa's Lost Days",
+    "source": "https://avatar.fandom.com/wiki/Appa's_Lost_Days"
+  },
+  {
+    "id": "2-17",
+    "book": 2,
+    "number": 17,
+    "title": "Lake Laogai",
+    "source": "https://avatar.fandom.com/wiki/Lake_Laogai_(episode)"
+  },
+  {
+    "id": "2-18",
+    "book": 2,
+    "number": 18,
+    "title": "The Earth King",
+    "source": "https://avatar.fandom.com/wiki/The_Earth_King"
+  },
+  {
+    "id": "2-19",
+    "book": 2,
+    "number": 19,
+    "title": "The Guru",
+    "source": "https://avatar.fandom.com/wiki/The_Guru"
+  },
+  {
+    "id": "2-20",
+    "book": 2,
+    "number": 20,
+    "title": "The Crossroads of Destiny",
+    "source": "https://avatar.fandom.com/wiki/The_Crossroads_of_Destiny"
+  },
+  {
+    "id": "3-1",
+    "book": 3,
+    "number": 1,
+    "title": "The Awakening",
+    "source": "https://avatar.fandom.com/wiki/The_Awakening"
+  },
+  {
+    "id": "3-2",
+    "book": 3,
+    "number": 2,
+    "title": "The Headband",
+    "source": "https://avatar.fandom.com/wiki/The_Headband"
+  },
+  {
+    "id": "3-3",
+    "book": 3,
+    "number": 3,
+    "title": "The Painted Lady",
+    "source": "https://avatar.fandom.com/wiki/The_Painted_Lady"
+  },
+  {
+    "id": "3-4",
+    "book": 3,
+    "number": 4,
+    "title": "Sokka's Master",
+    "source": "https://avatar.fandom.com/wiki/Sokka's_Master"
+  },
+  {
+    "id": "3-5",
+    "book": 3,
+    "number": 5,
+    "title": "The Beach",
+    "source": "https://avatar.fandom.com/wiki/The_Beach"
+  },
+  {
+    "id": "3-6",
+    "book": 3,
+    "number": 6,
+    "title": "The Avatar and the Fire Lord",
+    "source": "https://avatar.fandom.com/wiki/The_Avatar_and_the_Fire_Lord"
+  },
+  {
+    "id": "3-7",
+    "book": 3,
+    "number": 7,
+    "title": "The Runaway",
+    "source": "https://avatar.fandom.com/wiki/The_Runaway"
+  },
+  {
+    "id": "3-8",
+    "book": 3,
+    "number": 8,
+    "title": "The Puppetmaster",
+    "source": "https://avatar.fandom.com/wiki/The_Puppetmaster"
+  },
+  {
+    "id": "3-9",
+    "book": 3,
+    "number": 9,
+    "title": "Nightmares and Daydreams",
+    "source": "https://avatar.fandom.com/wiki/Nightmares_and_Daydreams"
+  },
+  {
+    "id": "3-10",
+    "book": 3,
+    "number": 10,
+    "title": "The Day of Black Sun, Part 1: The Invasion",
+    "source": "https://avatar.fandom.com/wiki/The_Day_of_Black_Sun,_Part_1:_The_Invasion"
+  },
+  {
+    "id": "3-11",
+    "book": 3,
+    "number": 11,
+    "title": "The Day of Black Sun, Part 2: The Eclipse",
+    "source": "https://avatar.fandom.com/wiki/The_Day_of_Black_Sun,_Part_2:_The_Eclipse"
+  },
+  {
+    "id": "3-12",
+    "book": 3,
+    "number": 12,
+    "title": "The Western Air Temple",
+    "source": "https://avatar.fandom.com/wiki/The_Western_Air_Temple"
+  },
+  {
+    "id": "3-13",
+    "book": 3,
+    "number": 13,
+    "title": "The Firebending Masters",
+    "source": "https://avatar.fandom.com/wiki/The_Firebending_Masters"
+  },
+  {
+    "id": "3-14",
+    "book": 3,
+    "number": 14,
+    "title": "The Boiling Rock, Part 1",
+    "source": "https://avatar.fandom.com/wiki/The_Boiling_Rock,_Part_1"
+  },
+  {
+    "id": "3-15",
+    "book": 3,
+    "number": 15,
+    "title": "The Boiling Rock, Part 2",
+    "source": "https://avatar.fandom.com/wiki/The_Boiling_Rock,_Part_2"
+  },
+  {
+    "id": "3-16",
+    "book": 3,
+    "number": 16,
+    "title": "The Southern Raiders",
+    "source": "https://avatar.fandom.com/wiki/The_Southern_Raiders"
+  },
+  {
+    "id": "3-17",
+    "book": 3,
+    "number": 17,
+    "title": "The Ember Island Players",
+    "source": "https://avatar.fandom.com/wiki/The_Ember_Island_Players"
+  },
+  {
+    "id": "3-18",
+    "book": 3,
+    "number": 18,
+    "title": "Sozin's Comet, Part 1: The Phoenix King",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_1:_The_Phoenix_King"
+  },
+  {
+    "id": "3-19",
+    "book": 3,
+    "number": 19,
+    "title": "Sozin's Comet, Part 2: The Old Masters",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_2:_The_Old_Masters"
+  },
+  {
+    "id": "3-20",
+    "book": 3,
+    "number": 20,
+    "title": "Sozin's Comet, Part 3: Into the Inferno",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_3:_Into_the_Inferno"
+  },
+  {
+    "id": "3-21",
+    "book": 3,
+    "number": 21,
+    "title": "Sozin's Comet, Part 4: Avatar Aang",
+    "source": "https://avatar.fandom.com/wiki/Sozin's_Comet,_Part_4:_Avatar_Aang"
+  }
+]

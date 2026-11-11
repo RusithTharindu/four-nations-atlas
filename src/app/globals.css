@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f4ecd8;
+  --paper-deep: #e9dcbc;
+  --ink: #2b2620;
+  --ink-soft: #5b5246;
+  --ocean: #8fc3d6;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --font-hand: var(--font-hand);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background: var(--ocean);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Paper grain: an SVG turbulence noise laid over the card fill. */
+.paper-grain {
+  border-radius: 6px;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0 0.25  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Markers wiggle a little when hovered or focused. */
+@keyframes doodle-wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1.08); }
+  25% { transform: rotate(-7deg) scale(1.1); }
+  75% { transform: rotate(6deg) scale(1.1); }
+}
+.marker-pin { transition: transform 150ms ease; transform-origin: 50% 85%; }
+.marker:hover .marker-pin,
+.marker:focus-visible .marker-pin { animation: doodle-wiggle 0.55s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marker:hover .marker-pin,
+  .marker:focus-visible .marker-pin { animation: none; transform: scale(1.08); }
+}
+
+/* Hide the browser's own clear button on the search field; Escape clears it. */
+input[type="search"]::-webkit-search-cancel-button { appearance: none; }

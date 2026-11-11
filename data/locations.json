@@ -1,0 +1,115 @@
+[
+  {
+    "id": "southern-water-tribe",
+    "name": "Southern Water Tribe",
+    "nation": "water",
+    "position": [2, 64],
+    "summary": "A small, snowbound village on the South Pole where Katara and Sokka grew up, reduced to a handful of families after years of Fire Nation raids.",
+    "appearances": [
+      { "episode": "1-1" },
+      { "episode": "1-2" },
+      { "episode": "3-16", "flashback": true }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Southern_Water_Tribe"
+  },
+  {
+    "id": "southern-air-temple",
+    "name": "Southern Air Temple",
+    "nation": "air",
+    "position": [-24, 44],
+    "summary": "Aang's childhood home, a temple perched on high southern peaks that has stood empty since the Air Nomads were wiped out a century ago.",
+    "appearances": [
+      { "episode": "1-3" },
+      { "episode": "1-12", "flashback": true }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Southern_Air_Temple"
+  },
+  {
+    "id": "kyoshi-island",
+    "name": "Kyoshi Island",
+    "nation": "earth",
+    "position": [24, 40],
+    "summary": "A quiet island in the southern sea named for Avatar Kyoshi, guarded by a band of warriors who fight with fans and face paint.",
+    "appearances": [{ "episode": "1-4" }],
+    "source": "https://avatar.fandom.com/wiki/Kyoshi_Island"
+  },
+  {
+    "id": "omashu",
+    "name": "Omashu",
+    "nation": "earth",
+    "position": [8, 16],
+    "summary": "A mountain city in the southwest of the Earth Kingdom, famous for its stone delivery chutes and its eccentric earthbending king.",
+    "appearances": [
+      { "episode": "1-5" },
+      { "episode": "2-3" },
+      { "episode": "3-19", "flashback": true }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Omashu"
+  },
+  {
+    "id": "northern-water-tribe",
+    "name": "Northern Water Tribe",
+    "nation": "water",
+    "position": [14, -64],
+    "summary": "A grand city of ice canals and walls at the North Pole, home of the waterbending master Pakku and the sacred Spirit Oasis.",
+    "appearances": [
+      { "episode": "1-18" },
+      { "episode": "1-19" },
+      { "episode": "1-20" }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Northern_Water_Tribe"
+  },
+  {
+    "id": "ba-sing-se",
+    "name": "Ba Sing Se",
+    "nation": "earth",
+    "position": [56, -14],
+    "summary": "The walled capital of the Earth Kingdom in the northeast, a city of rings where order is kept quiet by the Dai Li.",
+    "appearances": [
+      { "episode": "2-13" },
+      { "episode": "2-14" },
+      { "episode": "2-15" },
+      { "episode": "2-16" },
+      { "episode": "2-17" },
+      { "episode": "2-18" },
+      { "episode": "2-19" },
+      { "episode": "2-20" },
+      { "episode": "3-19" },
+      { "episode": "3-20" },
+      { "episode": "3-21" }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Ba_Sing_Se"
+  },
+  {
+    "id": "fire-nation-capital",
+    "name": "Fire Nation Capital",
+    "nation": "fire",
+    "position": [-62, 6],
+    "summary": "The seat of the Fire Lord, a city built inside the rim of an old volcano with the royal palace at its heart.",
+    "appearances": [
+      { "episode": "1-12", "flashback": true },
+      { "episode": "2-7", "flashback": true },
+      { "episode": "3-1" },
+      { "episode": "3-2" },
+      { "episode": "3-6" },
+      { "episode": "3-10" },
+      { "episode": "3-11" },
+      { "episode": "3-20" },
+      { "episode": "3-21" }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Fire_Nation_Capital"
+  },
+  {
+    "id": "ember-island",
+    "name": "Ember Island",
+    "nation": "fire",
+    "position": [-56, -14],
+    "summary": "A Fire Nation resort island to the north of the capital, known for its beaches, holiday homes and a theater with very loose ideas about history.",
+    "appearances": [
+      { "episode": "3-5" },
+      { "episode": "3-17" },
+      { "episode": "3-18" }
+    ],
+    "source": "https://avatar.fandom.com/wiki/Ember_Island"
+  }
+]
