@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
     "lint": "eslint",
     "validate:data": "tsx scripts/validate-data.ts",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "preview": "npx --yes serve@14.2.4 out"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

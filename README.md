@@ -12,11 +12,16 @@ Next.js (App Router) · TypeScript · Tailwind CSS · three.js via @react-three/
 
 ```bash
 npm run dev            # start the dev server
-npm run build          # production build
+npm run build          # static export to ./out (set PAGES_BASE_PATH to serve under a sub-path)
+npm run preview        # serve ./out locally
 npm run lint           # ESLint
 npm run typecheck      # tsc --noEmit
 npm run validate:data  # validate /data (or: npm run validate:data -- <dir>)
 ```
+
+## Deployment
+
+`.github/workflows/nextjs.yml` deploys every push to `main` to **GitHub Pages**. The atlas runs entirely in the browser, so `next.config.ts` uses `output: "export"`, and the workflow passes the Pages base path (e.g. `/four-nations-atlas`) in as `PAGES_BASE_PATH`. It validates the lore data before it builds. One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 ## Continuous integration
 
